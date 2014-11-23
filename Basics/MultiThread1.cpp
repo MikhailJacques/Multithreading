@@ -43,7 +43,9 @@ int main()
 	thread second(bar, 3);	// spawn new thread that calls bar(3)
 	thread third(bob, 7);	// spawn new thread that calls bob(7)
 
-	cout << "Main, foo, bar and bob now execute concurrently...\n";
+	this_thread::sleep_for (chrono::seconds(1));
+
+	cout << "\nMain, foo, bar and bob now execute concurrently...\n";
 
 	this_thread::sleep_for (chrono::seconds(1));
 
@@ -51,7 +53,6 @@ int main()
 	cout << "first: " << first.joinable() << endl;
 	cout << "second: " << second.joinable() << endl;
 	cout << "third: " << third.joinable() << endl;
-
 
 	// Synchronize threads:
 	first.join();			// pauses until first finishes
